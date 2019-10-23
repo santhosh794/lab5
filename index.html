@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Experiment5</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        Web Tech: <input type="text" id="web" /><br />
+       Database: <input type="text" id="data" /><br />
+       
+       <button onclick="calculate();">Get Grade!</button>
+       Your Grade is <span id="score"></span>. <br />
+       
+       <hr>
+       
+        <h1>Pattern Design</h1>
+        <div> 
+        Rows: <input type="text" id ="rows" />
+        Columns: <input type="text" id ="columns" /> <br />
+        <button onclick="design();">Design Pattern</button>
+        </div>
+        <br>
+        <div id="pattern">
+        </div>
+        <hr>
+        <fieldset> Convert <input type="text" id="data1" />
+            <select id="from">
+                <option id="pounds" value="pounds">Pounds</option>
+                <option id="kilograms" value="kilograms">Kilograms</option>
+            </select>
+            to
+            <select id ="to">
+            <option value="Kilograms">Kilograms</option>
+            <option value="Pounds">Pounds</option>
+            </select>
+            <button onclick="convert();">Calculate</button> <span id="answer"></span>
+       </fieldset>
+        
+        <h1>Pizza Order Form</h1>
+<fieldset>
+# of Small pizza <input type="text" id="small" /><br />
+# of Medium pizza <input type="text" id="medium" /><br />
+# of Large pizza <input type="text" id="large" /><br />
+Tip:
+
+<label><input type="radio" value="10" name="tip" id="r1" /> 10%</label>
+<label><input type="radio" value="15" name="tip" id="r2" checked="checked" /> 15% </label>
+<label><input type="radio" value="20" name="tip" id="r3" /> 20%</label> <br />
+<button id="submit" onclick="calcorder()">Calculate Order</button>
+
+</fieldset>
+<p>
+Cost of order: <span id="price"></span>
+</p>
+        
+        <script>
+            
+            alert("welocome");
+            var a = confirm("welcome");
+            var b = prompt("Enter:");
+            document.write(b + "<br>");
+            var words = b.split(" ");
+            var result = words[0];
+            var result1 = words[0];
+   
+            for(var i=0;i<words.length;i++)
+            {    
+                document.writeln(words[i].length+",");
+                if(result.length<words[i].length)
+                {
+                    result = words[i];
+                }
+                if(result1.length>=words[i].length)
+                {
+                    result1 = words[i];
+                }
+            }
+            document.write("<br>");
+            document.write("Longest " + result);
+            document.write("<br>");
+            document.write("Shortest " + result1);
+            
+            function calculate()
+            {
+//                O: >= 95
+//                S: >= 90 to <95
+//                A: >=80 to <90
+//                B: >=70 to <80
+//                C: >=60 to <70
+//                P: >=50 to <60
+//                R: <50
+                var mark1 = parseInt(document.getElementById("web").value);
+                var mark2 = parseInt(document.getElementById("data").value);
+                var marks = (mark1 + mark2)/2;
+                document.getElementById("score").innerHTML = marks;
+                
+                if(marks >=95)
+                {
+                    document.getElementById("score").innerHTML = "O";
+                }
+                if(marks >=90 && marks<95)
+                {
+                    document.getElementById('score').innerHTML = "S";
+                }
+                if(marks >=80 && marks<90)
+                {
+                    document.getElementById('score').innerHTML = "A";
+                }
+                if(marks >=70 && marks<80)
+                {
+                    document.getElementById('score').innerHTML = "B";
+                }
+                if(marks >=60 && marks<70)
+                {
+                    document.getElementById('score').innerHTML = "C";
+                }
+                if(marks >=50 && marks<60)
+                {
+                    document.getElementById('score').innerHTML = "P";
+                }
+                if(marks < 50)
+                {
+                    document.getElementById('score').innerHTML = "R";
+                }          
+            }
+
+       function design() {
+           var r = parseInt(document.getElementById("rows").value);
+           var c = parseInt(document.getElementById("columns").value);
+           
+           for(var i=0;i<r;i++)
+           {
+               for(var j=0;j<c;j++)
+               {
+                if(j%2==0){
+                    document.getElementById("pattern").innerHTML+= "<img src='flower1.jpg' width=50px>"
+                }else
+                {
+                    document.getElementById("pattern").innerHTML+= "<img src='flower2.jpg' width=50px>"
+                }
+                
+                       
+               }
+                document.getElementById("pattern").innerHTML+= "<br>"
+                 
+           }  
+       }  
+       var i=0;
+       function convert() {
+           var x = parseInt(document.getElementById("data1").value);
+           var e = document.getElementById("from");
+           var f = e.options[e.selectedIndex].text;
+           var y = 0.0;
+           if(f=="Pounds")
+           {   
+               y = parseFloat(x)/0.453592;
+               alert(y);
+           }else
+           {
+               y = x * 0.453592;
+           }
+           document.getElementById("answer").innerHTML = y; 
+       }
+       
+       function calcorder(){
+           var p = parseInt(document.getElementById("small").value);
+       var q = parseInt(document.getElementById("medium").value);
+       var r = parseInt(document.getElementById("large").value);
+       var temp = (p*100)+(q*200)+(r*300);
+       alert(temp);
+       var temp1;
+       
+       if(document.getElementById("r1").checked)
+       {
+           var temp1 = parseInt(document.getElementById("r1").value);
+       }
+       if(document.getElementById("r2").checked)
+       {
+           var temp1 = parseInt(document.getElementById("r2").value);
+       }
+       if(document.getElementById("r3").checked)
+       {
+           var temp1 = parseInt(document.getElementById("r3").value);
+       }
+       
+       
+       var tax = (temp/temp1);
+       
+       var total = temp + tax;
+       
+       document.getElementById("price").innerHTML = total;
+       
+       }
+       
+       
+
+       
+</script>
+    </body>
+</html>
